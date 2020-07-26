@@ -13,7 +13,7 @@ io.on("connection", (socket) => {
   socket.on("send", (message) => {
     socket.broadcast.emit("receive", {
       message: message,
-      time:  time.toLocaleTimeString(),
+      time:  time.toLocaleString('en-IN', { hour: 'numeric', minute: 'numeric', hour12: true }),
       user: users[socket.id],
     });
   });
