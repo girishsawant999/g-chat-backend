@@ -10,7 +10,6 @@
   "author": "Girish",
   "license": "ISC",
   "dependencies": {
-    "nodemon": "^2.0.4",
     "socket.io": "^2.3.0"
   }
 }
