@@ -9,8 +9,8 @@ io.on("connection", (socket) => {
     socket.broadcast.emit(
       "user-joined",
       socket.id,
-      time.toLocaleString("en-IN", {
-        timeZone: "Asia/Kolkata",
+      time.toLocaleString(undefined, {
+        timeZone: "Indian/Christmas",
         hour: "numeric",
         minute: "numeric",
         hour12: true,
