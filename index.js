@@ -6,7 +6,17 @@ const users = {};
 io.on("connection", (socket) => {
   socket.on("new-user-joined", (user) => {
     users[socket.id] = user;
-    socket.broadcast.emit("user-joined", socket.id, users);
+    socket.broadcast.emit(
+      "user-joined",
+      socket.id,
+      time.toLocaleString("en-IN", {
+        timeZone: "Asia/Kolkata",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      }),
+      users
+    );
     socket.emit("get-users-list", socket.id, users);
   });
 
@@ -30,7 +40,17 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    socket.broadcast.emit("left", socket.id, users);
+    socket.broadcast.emit(
+      "left",
+      socket.id,
+      time.toLocaleString("en-IN", {
+        timeZone: "Asia/Kolkata",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      }),
+      users
+    );
     delete users[socket.id];
   });
 });
