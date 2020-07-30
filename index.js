@@ -1,6 +1,5 @@
 // Node server which will handle request
 const io = require("socket.io")(process.env.PORT || 8000);
-const time = new Date();
 const users = {};
 
 io.on("connection", (socket) => {
@@ -9,8 +8,8 @@ io.on("connection", (socket) => {
     socket.broadcast.emit(
       "user-joined",
       socket.id,
-      time.toLocaleString(undefined, {
-        timeZone: "Indian/Christmas",
+      new Date().toLocaleString(undefined, {
+        timeZone: "Asia/Kolkata",
         hour: "numeric",
         minute: "numeric",
         hour12: true,
@@ -23,7 +22,7 @@ io.on("connection", (socket) => {
   socket.on("send", (message) => {
     socket.broadcast.emit("receive", {
       message: message,
-      time: time.toLocaleString("en-IN", {
+      time: new Date().toLocaleString(undefined, {
         timeZone: "Asia/Kolkata",
         hour: "numeric",
         minute: "numeric",
@@ -43,7 +42,7 @@ io.on("connection", (socket) => {
     socket.broadcast.emit(
       "left",
       socket.id,
-      time.toLocaleString("en-IN", {
+      new Date().toLocaleString(undefined, {
         timeZone: "Asia/Kolkata",
         hour: "numeric",
         minute: "numeric",
